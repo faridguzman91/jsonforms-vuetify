@@ -1,0 +1,969 @@
+{
+    "components": {
+        "schemas": {
+            "GeneralError": {
+                "required": ["code", "message"],
+                "type": "object",
+                "properties": {
+                    "message": {
+                        "type": "string"
+                    },
+                    "code": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ResourceKind": {
+                "type": "string",
+                "enum": [
+                    "InteractionsInstance",
+                    "SessionBorderController",
+                    "SIPLoadBalancer",
+                    "Trunk",
+                    "TransformationRules",
+                    "InboundRoutingRule",
+                    "OutboundRoutingRule"
+                ]
+            },
+            "ResourceAPIVersion": {
+                "type": "string",
+                "enum": [
+                    "interactions/v1",
+                    "sbc/v1",
+                    "sipLoadBalancer/v1",
+                    "trunk/v1",
+                    "transformationRules/v1",
+                    "inboundRoutingRule/v1",
+                    "outboundRoutingRule/v1"
+                ]
+            },
+            "Tags": {
+                "type": "object",
+                "additionalProperties": {
+                    "type": "string"
+                }
+            },
+            "ResourceReference": {
+                "type": "object",
+                "required": ["type", "resource", "association"],
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": ["source", "target"]
+                    },
+                    "resource": {
+                        "type": "object",
+                        "required": ["id", "name", "kind", "environment"],
+                        "properties": {
+                            "id": {
+                                "type": "string",
+                                "format": "uuid"
+                            },
+                            "name": {
+                                "type": "string"
+                            },
+                            "kind": {
+                                "$ref": "#/components/schemas/ResourceKind"
+                            },
+                            "environment": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "association": {
+                        "type": "object",
+                        "required": ["id", "kind"],
+                        "properties": {
+                            "id": {
+                                "type": "string",
+                                "format": "uuid"
+                            },
+                            "kind": {
+                                "$ref": "#/components/schemas/AssociationKind"
+                            }
+                        }
+                    }
+                }
+            },
+            "ResourceVersioning": {
+                "type": "object",
+                "required": ["revision"],
+                "properties": {
+                    "revision": {
+                        "type": "integer",
+                        "format": "uint64",
+                        "minimum": 1
+                    }
+                }
+            },
+            "ResourceContent": {
+                "type": "object",
+                "required": ["api_version"],
+                "properties": {
+                    "display_name": {
+                        "minLength": 3,
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "description": {
+                        "maxLength": 512,
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "api_version": {
+                        "$ref": "#/components/schemas/ResourceAPIVersion"
+                    },
+                    "tags": {
+                        "$ref": "#/components/schemas/Tags"
+                    }
+                },
+                "oneOf": [{
+                        "$ref": "#/components/schemas/InteractionsInstanceV1Spec"
+                    },
+                    {
+                        "$ref": "#/components/schemas/TrunkV1Spec"
+                    },
+                    {
+                        "$ref": "#/components/schemas/SessionBorderControllerV1Spec"
+                    },
+                    {
+                        "$ref": "#/components/schemas/SIPLoadBalancerV1Spec"
+                    },
+                    {
+                        "$ref": "#/components/schemas/TransformationRulesV1Spec"
+                    },
+                    {
+                        "$ref": "#/components/schemas/InboundRoutingRuleV1Spec"
+                    },
+                    {
+                        "$ref": "#/components/schemas/OutboundRoutingRuleV1Spec"
+                    }
+                ],
+                "discriminator": {
+                    "propertyName": "api_version",
+                    "mapping": {
+                        "interactions/v1": "#/components/schemas/InteractionsInstanceV1Spec",
+                        "trunk/v1": "#/components/schemas/TrunkV1Spec",
+                        "sbc/v1": "#/components/schemas/SessionBorderControllerV1Spec",
+                        "sipLoadBalancer/v1": "#/components/schemas/SIPLoadBalancerV1Spec",
+                        "transformationRules/v1": "#/components/schemas/TransformationRulesV1Spec",
+                        "inboundRoutingRule/v1": "#/components/schemas/InboundRoutingRuleV1Spec",
+                        "outboundRoutingRule/v1": "#/components/schemas/OutboundRoutingRuleV1Spec"
+                    }
+                }
+            },
+            "UpdateResource": {
+                "type": "object",
+                "allOf": [{
+                        "$ref": "#/components/schemas/ResourceContent"
+                    },
+                    {
+                        "$ref": "#/components/schemas/ResourceVersioning"
+                    }
+                ]
+            },
+            "CreateResource": {
+                "type": "object",
+                "allOf": [{
+                        "$ref": "#/components/schemas/ResourceContent"
+                    },
+                    {
+                        "required": ["account_id", "kind", "name", "environment"],
+                        "properties": {
+                            "account_id": {
+                                "type": "string",
+                                "format": "uuid"
+                            },
+                            "kind": {
+                                "$ref": "#/components/schemas/ResourceKind"
+                            },
+                            "name": {
+                                "maxLength": 64,
+                                "minLength": 3,
+                                "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+                                "type": "string"
+                            },
+                            "environment": {
+                                "maxLength": 64,
+                                "minLength": 3,
+                                "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+                                "type": "string"
+                            }
+                        }
+                    }
+                ]
+            },
+            "Resource": {
+                "type": "object",
+                "allOf": [{
+                        "$ref": "#/components/schemas/CreateResource"
+                    },
+                    {
+                        "$ref": "#/components/schemas/ResourceVersioning"
+                    },
+                    {
+                        "required": [
+                            "id",
+                            "created_at",
+                            "updated_at",
+                            "activated_at",
+                            "tags"
+                        ],
+                        "properties": {
+                            "id": {
+                                "type": "string",
+                                "format": "uuid"
+                            },
+                            "created_at": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "updated_at": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "activated_at": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "refs": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/ResourceReference"
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+            "ResourceTreeNode": {
+                "type": "object",
+                "required": ["resource_id", "resource_kind", "children"],
+                "properties": {
+                    "resource_id": {
+                        "type": "string",
+                        "format": "uuid",
+                        "x-order": 1
+                    },
+                    "resource_kind": {
+                        "type": "string",
+                        "$ref": "#/components/schemas/ResourceKind",
+                        "x-order": 2
+                    },
+                    "association_id": {
+                        "type": "string",
+                        "format": "uuid",
+                        "x-order": 3
+                    },
+                    "association_kind": {
+                        "$ref": "#/components/schemas/AssociationKind",
+                        "x-order": 4
+                    },
+                    "children": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ResourceTreeNode"
+                        },
+                        "x-order": 5
+                    }
+                }
+            },
+            "ResourceTree": {
+                "type": "object",
+                "required": ["root", "resources"],
+                "properties": {
+                    "root": {
+                        "$ref": "#/components/schemas/ResourceTreeNode",
+                        "x-order": 1
+                    },
+                    "resources": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "#/components/schemas/Resource"
+                        },
+                        "x-order": 2
+                    }
+                }
+            },
+            "ResourceTrees": {
+                "type": "object",
+                "required": ["roots", "resources"],
+                "properties": {
+                    "roots": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ResourceTreeNode"
+                        },
+                        "x-order": 1
+                    },
+                    "resources": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "#/components/schemas/Resource"
+                        },
+                        "x-order": 2
+                    }
+                }
+            },
+            "UpsertResourceStatus": {
+                "required": ["conditions"],
+                "type": "object",
+                "properties": {
+                    "conditions": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/UpsertStatusCondition"
+                        }
+                    }
+                }
+            },
+            "ResourceStatus": {
+                "required": ["conditions"],
+                "type": "object",
+                "properties": {
+                    "conditions": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/StatusCondition"
+                        }
+                    }
+                }
+            },
+            "WatchEventAction": {
+                "type": "string",
+                "enum": ["insert", "update", "delete", "error", "close"],
+                "x-enum-varnames": [
+                    "WatchEventActionInsert",
+                    "WatchEventActionUpdate",
+                    "WatchEventActionDelete",
+                    "WatchEventActionError",
+                    "WatchEventActionClose"
+                ]
+            },
+            "WatchMode": {
+                "type": "string",
+                "enum": ["cumulative", "incremental"],
+                "x-enum-varnames": ["WatchModeCumulative", "WatchModeIncremental"]
+            },
+            "WatchEventKind": {
+                "type": "string",
+                "enum": ["Resource", "ResourceTree", "ResourceTreeNode"]
+            },
+            "WatchEvent": {
+                "type": "object",
+                "required": ["action"],
+                "properties": {
+                    "action": {
+                        "$ref": "#/components/schemas/WatchEventAction",
+                        "x-order": 1
+                    },
+                    "message": {
+                        "type": "string",
+                        "x-order": 2
+                    },
+                    "kind": {
+                        "$ref": "#/components/schemas/WatchEventKind",
+                        "x-order": 3
+                    },
+                    "data": {
+                        "oneOf": [{
+                                "$ref": "#/components/schemas/ResourceTreeNode"
+                            },
+                            {
+                                "$ref": "#/components/schemas/ResourceTree"
+                            },
+                            {
+                                "$ref": "#/components/schemas/Resource"
+                            }
+                        ],
+                        "x-order": 4
+                    }
+                }
+            },
+            "UpsertStatusCondition": {
+                "required": ["type"],
+                "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "boolean",
+                        "nullable": true
+                    },
+                    "message": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "reason": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                }
+            },
+            "StatusCondition": {
+                "allOf": [{
+                        "$ref": "#/components/schemas/UpsertStatusCondition"
+                    },
+                    {
+                        "type": "object",
+                        "required": ["updated_at"],
+                        "properties": {
+                            "updated_at": {
+                                "type": "string",
+                                "format": "date-time"
+                            }
+                        }
+                    }
+                ]
+            },
+            "ResourcesResponse": {
+                "oneOf": [{
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Resource"
+                        }
+                    },
+                    {
+                        "$ref": "#/components/schemas/ResourceTrees"
+                    }
+                ]
+            },
+            "ResourceResponse": {
+                "oneOf": [{
+                        "$ref": "#/components/schemas/Resource"
+                    },
+                    {
+                        "$ref": "#/components/schemas/ResourceTree"
+                    }
+                ]
+            },
+            "ResourceEventType": {
+                "type": "string",
+                "enum": ["Normal", "Warning"]
+            },
+            "CreateResourceEvent": {
+                "required": ["type", "reason"],
+                "properties": {
+                    "type": {
+                        "$ref": "#/components/schemas/ResourceEventType"
+                    },
+                    "reason": {
+                        "type": "string"
+                    },
+                    "message": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                }
+            },
+            "ResourceEvent": {
+                "allOf": [{
+                        "$ref": "#/components/schemas/CreateResourceEvent"
+                    },
+                    {
+                        "type": "object",
+                        "required": ["id", "created_at"],
+                        "properties": {
+                            "id": {
+                                "type": "string",
+                                "format": "uuid"
+                            },
+                            "created_at": {
+                                "type": "string",
+                                "format": "date-time"
+                            }
+                        }
+                    }
+                ]
+            },
+            "SessionBorderControllerV1Spec": {
+                "required": ["spec"],
+                "properties": {
+                    "spec": {
+                        "$ref": "#/components/schemas/SessionBorderControllerV1"
+                    }
+                }
+            },
+            "SessionBorderControllerV1": {
+                "type": "object",
+                "x-quandago-resource-kind": "SessionBorderController",
+                "x-quandago-resource-version": "sbc/v1",
+                "additionalProperties": false
+            },
+            "SIPLoadBalancerV1Spec": {
+                "required": ["spec"],
+                "properties": {
+                    "spec": {
+                        "$ref": "#/components/schemas/SIPLoadBalancerV1"
+                    }
+                }
+            },
+            "SIPLoadBalancerV1": {
+                "type": "object",
+                "x-quandago-resource-kind": "SIPLoadBalancer",
+                "x-quandago-resource-version": "sipLoadBalancer/v1",
+                "additionalProperties": false
+            },
+            "OutboundRoutingRuleV1Spec": {
+                "required": ["spec"],
+                "properties": {
+                    "spec": {
+                        "$ref": "#/components/schemas/OutboundRoutingRuleV1"
+                    }
+                }
+            },
+            "OutboundRoutingRuleV1": {
+                "type": "object",
+                "x-quandago-resource-kind": "OutboundRoutingRule",
+                "x-quandago-resource-version": "outboundRoutingRule/v1",
+                "required": ["routing_tag"],
+                "properties": {
+                    "routing_tag": {
+                        "type": "string"
+                    },
+                    "prefix": {
+                        "type": "string",
+                        "pattern": "^[0-9+]+$",
+                        "nullable": true
+                    }
+                }
+            },
+            "InboundRoutingRuleV1Spec": {
+                "required": ["spec"],
+                "properties": {
+                    "spec": {
+                        "$ref": "#/components/schemas/InboundRoutingRuleV1"
+                    }
+                }
+            },
+            "InboundRoutingRuleV1": {
+                "type": "object",
+                "x-quandago-resource-kind": "InboundRoutingRule",
+                "x-quandago-resource-version": "inboundRoutingRule/v1",
+                "required": ["prefix"],
+                "properties": {
+                    "prefix": {
+                        "type": "string",
+                        "pattern": "^[0-9+]+$"
+                    }
+                }
+            },
+            "TrunkRemoteRegistrarV1": {
+                "type": "object",
+                "required": [
+                    "local_username",
+                    "remote_username",
+                    "remote_domain",
+                    "realm",
+                    "auth_username",
+                    "auth_password",
+                    "auth_proxy",
+                    "expires"
+                ],
+                "properties": {
+                    "local_username": {
+                        "type": "string"
+                    },
+                    "remote_username": {
+                        "type": "string"
+                    },
+                    "remote_domain": {
+                        "type": "string"
+                    },
+                    "realm": {
+                        "type": "string"
+                    },
+                    "auth_username": {
+                        "type": "string"
+                    },
+                    "auth_password": {
+                        "type": "string"
+                    },
+                    "auth_proxy": {
+                        "type": "string"
+                    },
+                    "expires": {
+                        "type": "string",
+                        "x-go-type": "types.Duration",
+                        "x-go-type-import": {
+                            "path": "gitlab.quandago.io/interactions/core/config-service/pkg/configapi/types",
+                            "name": "types"
+                        }
+                    }
+                }
+            },
+            "TrunkDestinationV1": {
+                "type": "object",
+                "required": ["host", "port"],
+                "properties": {
+                    "host": {
+                        "type": "string"
+                    },
+                    "port": {
+                        "type": "integer",
+                        "format": "uint16"
+                    },
+                    "sips": {
+                        "type": "boolean",
+                        "default": false
+                    },
+                    "scheme": {
+                        "type": "string",
+                        "nullable": true,
+                        "default": "sip",
+                        "enum": ["sip", "sips"]
+                    },
+                    "transport": {
+                        "type": "string",
+                        "enum": ["UDP", "TCP", "tls"],
+                        "default": "UDP"
+                    },
+                    "from_user": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "from_domain": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                }
+            },
+            "TrunkAllowedAddressV1": {
+                "type": "object",
+                "required": ["cidr_block"],
+                "properties": {
+                    "cidr_block": {
+                        "type": "string",
+                        "x-go-type": "netip.Prefix"
+                    }
+                }
+            },
+            "TrunkCredentialsV1": {
+                "type": "object",
+                "required": ["username", "password"],
+                "properties": {
+                    "username": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                }
+            },
+            "TrunkV1Spec": {
+                "required": ["spec"],
+                "properties": {
+                    "spec": {
+                        "$ref": "#/components/schemas/TrunkV1"
+                    }
+                }
+            },
+            "TrunkV1": {
+                "type": "object",
+                "x-quandago-resource-kind": "Trunk",
+                "x-quandago-resource-version": "trunk/v1",
+                "required": [
+                    "local_domain",
+                    "concurrent_channels",
+                    "send_pai",
+                    "send_rpid",
+                    "allowed_addresses",
+                    "destinations",
+                    "telephone_subscriber"
+                ],
+                "properties": {
+                    "local_domain": {
+                        "type": "string"
+                    },
+                    "concurrent_channels": {
+                        "type": "integer",
+                        "minimum": 0
+                    },
+                    "send_pai": {
+                        "type": "boolean",
+                        "default": true,
+                        "description": "Whether to set the Peer-Asserted-Identity header"
+                    },
+                    "send_rpid": {
+                        "type": "boolean",
+                        "default": false,
+                        "description": "Whether to set the Remote-Party-ID header"
+                    },
+                    "extra_headers": {
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "Extra headers to send along with the SIP INVITE"
+                    },
+                    "allowed_addresses": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/TrunkAllowedAddressV1"
+                        }
+                    },
+                    "destinations": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/TrunkDestinationV1"
+                        }
+                    },
+                    "telephone_subscriber": {
+                        "type": "boolean",
+                        "default": false
+                    },
+                    "registrar": {
+                        "$ref": "#/components/schemas/TrunkRemoteRegistrarV1",
+                        "nullable": true
+                    },
+                    "credentials": {
+                        "$ref": "#/components/schemas/TrunkCredentialsV1",
+                        "nullable": true
+                    }
+                }
+            },
+            "AssociationKind": {
+                "type": "string",
+                "enum": [
+                    "Ownership",
+                    "Member",
+                    "Assignment",
+                    "Dependency",
+                    "Allocation",
+                    "Grouping"
+                ]
+            },
+            "AllowedAssociation": {
+                "type": "object",
+                "required": [
+                    "id",
+                    "description",
+                    "source_kind",
+                    "source_api_version",
+                    "target_kind",
+                    "target_api_version"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "source_kind": {
+                        "$ref": "#/components/schemas/ResourceKind"
+                    },
+                    "source_api_version": {
+                        "$ref": "#/components/schemas/ResourceAPIVersion"
+                    },
+                    "target_kind": {
+                        "$ref": "#/components/schemas/ResourceKind"
+                    },
+                    "target_api_version": {
+                        "$ref": "#/components/schemas/ResourceAPIVersion"
+                    }
+                }
+            },
+            "CreateAssociation": {
+                "required": ["account_id", "kind", "source_id", "target_id"],
+                "type": "object",
+                "properties": {
+                    "account_id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "kind": {
+                        "$ref": "#/components/schemas/AssociationKind"
+                    },
+                    "source_id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "target_id": {
+                        "type": "string",
+                        "format": "uuid"
+                    }
+                }
+            },
+            "Association": {
+                "type": "object",
+                "allOf": [{
+                        "$ref": "#/components/schemas/CreateAssociation"
+                    },
+                    {
+                        "required": [
+                            "id",
+                            "created_at",
+                            "updated_at",
+                            "source_kind",
+                            "source_api_version",
+                            "target_kind",
+                            "target_api_version"
+                        ],
+                        "properties": {
+                            "id": {
+                                "type": "string",
+                                "format": "uuid"
+                            },
+                            "created_at": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "updated_at": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "source_kind": {
+                                "$ref": "#/components/schemas/ResourceKind"
+                            },
+                            "source_api_version": {
+                                "$ref": "#/components/schemas/ResourceAPIVersion"
+                            },
+                            "target_kind": {
+                                "$ref": "#/components/schemas/ResourceKind"
+                            },
+                            "target_api_version": {
+                                "$ref": "#/components/schemas/ResourceAPIVersion"
+                            }
+                        }
+                    }
+                ]
+            },
+            "InteractionsInstanceV1Spec": {
+                "required": ["spec"],
+                "properties": {
+                    "spec": {
+                        "$ref": "#/components/schemas/InteractionsInstanceV1"
+                    }
+                }
+            },
+            "InteractionsInstanceV1": {
+                "type": "object",
+                "x-quandago-resource-kind": "InteractionsInstance",
+                "x-quandago-resource-version": "interactions/v1",
+                "required": ["capacity", "classic", "domain", "tenant_guid"],
+                "properties": {
+                    "capacity": {
+                        "type": "integer",
+                        "minimum": 0
+                    },
+                    "classic": {
+                        "type": "boolean"
+                    },
+                    "domain": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "minLength": 3,
+                        "pattern": "(?=^.{4,253}$)(^((?!-)[a-zA-Z0-9-]{1,63}(?<!-)\\.)+[a-zA-Z]{2,63}$)"
+                    },
+                    "tenant_guid": {
+                        "type": "string",
+                        "minLength": 32,
+                        "maxLength": 32,
+                        "pattern": "^[0-9a-f]+$"
+                    }
+                }
+            },
+            "TransformationRule": {
+                "type": "object",
+                "required": ["match_expr", "replace_expr"],
+                "properties": {
+                    "match_expr": {
+                        "type": "string"
+                    },
+                    "replace_expr": {
+                        "type": "string"
+                    }
+                }
+            },
+            "TransformationRulesV1": {
+                "type": "object",
+                "x-quandago-resource-kind": "TransformationRules",
+                "x-quandago-resource-version": "transformationRules/v1",
+                "properties": {
+                    "inbound": {
+                        "type": "object",
+                        "properties": {
+                            "caller": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/TransformationRule"
+                                }
+                            },
+                            "callee": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/TransformationRule"
+                                }
+                            }
+                        }
+                    },
+                    "outbound": {
+                        "type": "object",
+                        "properties": {
+                            "caller": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/TransformationRule"
+                                }
+                            },
+                            "callee": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/TransformationRule"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "TransformationRulesV1Spec": {
+                "required": ["spec"],
+                "properties": {
+                    "spec": {
+                        "$ref": "#/components/schemas/TransformationRulesV1"
+                    }
+                }
+            },
+            "CreateAccount": {
+                "required": ["name"],
+                "properties": {
+                    "name": {
+                        "maxLength": 64,
+                        "minLength": 3,
+                        "type": "string"
+                    },
+                    "description": {
+                        "maxLength": 512,
+                        "type": "string",
+                        "nullable": true
+                    }
+                }
+            },
+            "Account": {
+                "type": "object",
+                "allOf": [{
+                        "$ref": "#/components/schemas/CreateAccount"
+                    },
+                    {
+                        "required": ["id", "created_at", "updated_at"],
+                        "properties": {
+                            "id": {
+                                "type": "string",
+                                "format": "uuid"
+                            },
+                            "created_at": {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            "updated_at": {
+                                "type": "string",
+                                "format": "date-time"
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}

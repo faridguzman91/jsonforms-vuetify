@@ -1,0 +1,147 @@
+{
+    "world": "the world!",
+    "nav": {
+        "home_title": "Home",
+        "conversation_list": "Conversations",
+        "subscriptions": "Subscriptions",
+        "users": "Users",
+        "accounts": "Accounts",
+        "resources": "Resources"
+    },
+    "assistance": "Assistance",
+    "teams": {
+        "customer_service": "Customer Service",
+        "contact_sales": "Contact Sales",
+        "account_support": "Account Support"
+    },
+    "button": {
+        "create_user": "Create user",
+        "apply_filter": "Apply filter",
+        "reset_filter": "Reset",
+        "select_queue": "Select queue",
+        "logout": "Logout",
+        "cancel": "Cancel",
+        "save": "Save",
+        "back": "Back",
+        "select": "Select"
+    },
+    "table_header": {
+        "name": "Name",
+        "description": "Description",
+        "capacity": "Capacity",
+        "hostname": "Hostname",
+        "username": "Username",
+        "email": "Email",
+        "role": "Role",
+        "created_at": "Created At",
+        "updated_at": "Updated At",
+        "revision": "Revision",
+        "actions": "Action"
+    },
+    "resource": {
+        "fetch_no_results_title": "No Results",
+        "fetch_no_results_detail": "No resources found for {kind}."
+    },
+    "account": {
+        "fetch_no_results_title": "No Accounts Found",
+        "fetch_no_results_detail": "No accounts were found.",
+        "fetch_success_title": "Accounts Loaded Successfully",
+        "fetch_success_detail": "The accounts have been successfully loaded."
+    },
+    "header": {
+        "keyword_search": "Keyword Search",
+        "new_button_label": "New"
+    },
+    "error": {
+        "title": "Error",
+        "generic_error": "An error occurred",
+        "badRequest": "Bad Request: Please check your input and try again.",
+        "serverError": "Server Error: Something went wrong on our end. Please try again later.",
+        "network": "Network Error: Unable to reach the server.",
+        "default": "An unexpected error occurred.",
+        "failed_to_load_accounts": "Failed to load accounts"
+    },
+    "placeholders": {
+        "search_by_name": "Search by name",
+        "search_by_username": "Search by username",
+        "search_by_email": "Search by email",
+        "search_by_role": "Search by role"
+    },
+    "resource_kind": {
+        "InteractionsInstance": "Interactions Instance",
+        "PhoneNumber": "Phone Number",
+        "PhoneNumberPool": "Phone Number Pool",
+        "SessionBorderController": "Session Border Controller",
+        "Trunk": "Trunk",
+        "TransformationRules": "Transformation Rules",
+        "InboundRoutingRule": "Inbound Routing Rule",
+        "OutboundRoutingRule": "Outbound Routing Rule"
+    },
+    "common": {
+        "search": "Search",
+        "advanced_search": "Advanced Search",
+        "campaigns": "Campaigns",
+        "campaign_name": "Campaign",
+        "queues": "Queues",
+        "queue_name": "Queue",
+        "id": "ID",
+        "instance": "Instance",
+        "campaign": "Campaign",
+        "routePointName": "Queue",
+        "agentName": "AgentName",
+        "clip": "Caller ID",
+        "answered": "Date Answered",
+        "dateTransferred": "Date Transferred",
+        "field": "Field",
+        "old_value": "Old Value",
+        "new_value": "New Value",
+        "updated_by": "Updated By",
+        "updated_on": "Updated On",
+        "event": "Event",
+        "display_name": "Display name",
+        "first_name": "First name",
+        "last_name": "Last name",
+        "status": "Status",
+        "archive": "Archive",
+        "archived": "Archived",
+        "email": "E-mail",
+        "roles": "Roles",
+        "extension_number": "Extension number",
+        "subject": "QuandaGo ID",
+        "active": "Active",
+        "inactive": "Inactive",
+        "profile": "Profile",
+        "users": "Users",
+        "both": "Both",
+        "no": "No",
+        "yes": "Yes",
+        "and": "and",
+        "phone_number": "Phone Number",
+        "interaction_id": "GUID",
+        "agent_name": "Agent Name",
+        "duration": "Duration",
+        "interaction_type": "Type",
+        "answered_at": "Answered At",
+        "metadata": "Metadata",
+        "conversation": "Conversation",
+        "from": "From",
+        "to": "To"
+    },
+    "message": {
+        "final": "No more conversations",
+        "loading": "Loading",
+        "select_conversation_to_play": "Select a conversation to play",
+        "play": "Play",
+        "metadataInfo": "Metadata",
+        "loading_file": "Loading file",
+        "loading_file_error": "Something went wrong loading the file, please try again later.",
+        "connecting_to_stream": "Connecting to stream",
+        "stream_disconnected": "Lost connection to the stream. This can happen when the stream is inactive for a long time or if the internet connection was lost.",
+        "stream_connection_error": "Something went wrong connecting to the stream, please try again later."
+    },
+    "locale": {
+        "dutch": "Dutch",
+        "english": "English",
+        "german": "German"
+    }
+}

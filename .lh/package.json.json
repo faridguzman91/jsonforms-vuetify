@@ -1,0 +1,46 @@
+{
+    "sourceFile": "package.json",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 7,
+            "patches": [
+                {
+                    "date": 1730836777340,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1730836783809,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,8 +14,21 @@\n         \"vue\": \"^3.4.31\",\n         \"vuetify\": \"^3.6.11\"\n     },\n     \"devDependencies\": {\n+        \"@apidevtools/json-schema-ref-parser\": \"^11.7.0\",\n+        \"@fortawesome/fontawesome-svg-core\": \"^6.6.0\",\n+        \"@fortawesome/free-brands-svg-icons\": \"^6.6.0\",\n+        \"@fortawesome/free-regular-svg-icons\": \"^6.6.0\",\n+        \"@fortawesome/free-solid-svg-icons\": \"^6.6.0\",\n+        \"@fortawesome/vue-fontawesome\": \"^3.0.8\",\n+        \"@headlessui/vue\": \"^1.7.22\",\n+        \"@heroicons/vue\": \"^2.1.5\",\n+        \"@jsonforms/core\": \"^3.4.0\",\n+        \"@jsonforms/vue\": \"^3.4.0\",\n+        \"@jsonforms/vue-vanilla\": \"^3.3.0\",\n+        \"@jsonforms/vue-vuetify\": \"^3.4.0\",\n+        \"@pinia/testing\": \"^0.1.3\",\n \n \n         \"@vitejs/plugin-vue\": \"^5.0.5\",\n         \"eslint\": \"^8.57.0\",\n"
+                },
+                {
+                    "date": 1730836811968,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,10 +27,8 @@\n         \"@jsonforms/vue\": \"^3.4.0\",\n         \"@jsonforms/vue-vanilla\": \"^3.3.0\",\n         \"@jsonforms/vue-vuetify\": \"^3.4.0\",\n         \"@pinia/testing\": \"^0.1.3\",\n-\n-\n         \"@vitejs/plugin-vue\": \"^5.0.5\",\n         \"eslint\": \"^8.57.0\",\n         \"eslint-config-standard\": \"^17.1.0\",\n         \"eslint-config-vuetify\": \"^1.0.0\",\n"
+                },
+                {
+                    "date": 1730836818620,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,8 +27,21 @@\n         \"@jsonforms/vue\": \"^3.4.0\",\n         \"@jsonforms/vue-vanilla\": \"^3.3.0\",\n         \"@jsonforms/vue-vuetify\": \"^3.4.0\",\n         \"@pinia/testing\": \"^0.1.3\",\n+        \"@primevue/core\": \"^4.0.2\",\n+        \"@primevue/themes\": \"^4.0.0\",\n+        \"@tailwindcss/forms\": \"^0.5.7\",\n+        \"@types/node\": \"^20.14.11\",\n+        \"@vee-validate/zod\": \"^4.13.2\",\n+        \"@vitest/ui\": \"^2.0.3\",\n+        \"@vue/test-utils\": \"^2.4.6\",\n+        \"ajv\": \"^8.17.1\",\n+        \"ajv-formats\": \"^3.0.1\",\n+        \"axios\": \"^1.7.2\",\n+        \"flag-icons\": \"^7.2.3\",\n+        \"json-refs\": \"^3.0.15\",\n+        \"keycloak\": \"^1.2.0\",\n         \"@vitejs/plugin-vue\": \"^5.0.5\",\n         \"eslint\": \"^8.57.0\",\n         \"eslint-config-standard\": \"^17.1.0\",\n         \"eslint-config-vuetify\": \"^1.0.0\",\n"
+                },
+                {
+                    "date": 1730836833892,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,8 +41,15 @@\n         \"flag-icons\": \"^7.2.3\",\n         \"json-refs\": \"^3.0.15\",\n         \"keycloak\": \"^1.2.0\",\n         \"@vitejs/plugin-vue\": \"^5.0.5\",\n+        \"prettier-plugin-tailwindcss\": \"^0.6.5\",\n+        \"primevue\": \"^4.0.0\",\n+        \"process\": \"^0.11.10\",\n+        \"storybook\": \"^8.2.4\",\n+        \"tailwindcss\": \"^3.4.6\",\n+        \"tailwindcss-primeui\": \"^0.3.4\",\n+        \"util\": \"^0.12.5\",\n         \"eslint\": \"^8.57.0\",\n         \"eslint-config-standard\": \"^17.1.0\",\n         \"eslint-config-vuetify\": \"^1.0.0\",\n         \"eslint-plugin-import\": \"^2.29.1\",\n"
+                },
+                {
+                    "date": 1730836852367,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,42 +14,9 @@\n         \"vue\": \"^3.4.31\",\n         \"vuetify\": \"^3.6.11\"\n     },\n     \"devDependencies\": {\n-        \"@apidevtools/json-schema-ref-parser\": \"^11.7.0\",\n-        \"@fortawesome/fontawesome-svg-core\": \"^6.6.0\",\n-        \"@fortawesome/free-brands-svg-icons\": \"^6.6.0\",\n-        \"@fortawesome/free-regular-svg-icons\": \"^6.6.0\",\n-        \"@fortawesome/free-solid-svg-icons\": \"^6.6.0\",\n-        \"@fortawesome/vue-fontawesome\": \"^3.0.8\",\n-        \"@headlessui/vue\": \"^1.7.22\",\n-        \"@heroicons/vue\": \"^2.1.5\",\n-        \"@jsonforms/core\": \"^3.4.0\",\n-        \"@jsonforms/vue\": \"^3.4.0\",\n-        \"@jsonforms/vue-vanilla\": \"^3.3.0\",\n-        \"@jsonforms/vue-vuetify\": \"^3.4.0\",\n-        \"@pinia/testing\": \"^0.1.3\",\n-        \"@primevue/core\": \"^4.0.2\",\n-        \"@primevue/themes\": \"^4.0.0\",\n-        \"@tailwindcss/forms\": \"^0.5.7\",\n-        \"@types/node\": \"^20.14.11\",\n-        \"@vee-validate/zod\": \"^4.13.2\",\n-        \"@vitest/ui\": \"^2.0.3\",\n-        \"@vue/test-utils\": \"^2.4.6\",\n-        \"ajv\": \"^8.17.1\",\n-        \"ajv-formats\": \"^3.0.1\",\n-        \"axios\": \"^1.7.2\",\n-        \"flag-icons\": \"^7.2.3\",\n-        \"json-refs\": \"^3.0.15\",\n-        \"keycloak\": \"^1.2.0\",\n         \"@vitejs/plugin-vue\": \"^5.0.5\",\n-        \"prettier-plugin-tailwindcss\": \"^0.6.5\",\n-        \"primevue\": \"^4.0.0\",\n-        \"process\": \"^0.11.10\",\n-        \"storybook\": \"^8.2.4\",\n-        \"tailwindcss\": \"^3.4.6\",\n-        \"tailwindcss-primeui\": \"^0.3.4\",\n-        \"util\": \"^0.12.5\",\n         \"eslint\": \"^8.57.0\",\n         \"eslint-config-standard\": \"^17.1.0\",\n         \"eslint-config-vuetify\": \"^1.0.0\",\n         \"eslint-plugin-import\": \"^2.29.1\",\n"
+                },
+                {
+                    "date": 1730836878768,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,18 +14,19 @@\n         \"vue\": \"^3.4.31\",\n         \"vuetify\": \"^3.6.11\"\n     },\n     \"devDependencies\": {\n-      \"@esbuild-plugins/node-globals-polyfill\": \"^0.2.3\",\n-      \"@esbuild-plugins/node-modules-polyfill\": \"^0.2.2\",\n+        \"@esbuild-plugins/node-globals-polyfill\": \"^0.2.3\",\n+        \"@esbuild-plugins/node-modules-polyfill\": \"^0.2.2\",\n         \"@vitejs/plugin-vue\": \"^5.0.5\",\n         \"eslint\": \"^8.57.0\",\n         \"eslint-config-standard\": \"^17.1.0\",\n         \"eslint-config-vuetify\": \"^1.0.0\",\n         \"eslint-plugin-import\": \"^2.29.1\",\n         \"eslint-plugin-n\": \"^16.6.2\",\n         \"eslint-plugin-node\": \"^11.1.0\",\n         \"eslint-plugin-promise\": \"^6.4.0\",\n+        \"daisyui\": \"^4.12.10\",\n         \"eslint-plugin-vue\": \"^9.27.0\",\n         \"pinia\": \"^2.1.7\",\n         \"sass\": \"1.77.6\",\n         \"unplugin-auto-import\": \"^0.17.6\",\n"
+                },
+                {
+                    "date": 1730836891009,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,8 +27,9 @@\n         \"eslint-plugin-promise\": \"^6.4.0\",\n         \"daisyui\": \"^4.12.10\",\n         \"eslint-plugin-vue\": \"^9.27.0\",\n         \"pinia\": \"^2.1.7\",\n+        \"typescript\": \"^5.2.2\",\n         \"sass\": \"1.77.6\",\n         \"unplugin-auto-import\": \"^0.17.6\",\n         \"unplugin-fonts\": \"^1.1.1\",\n         \"unplugin-vue-components\": \"^0.27.2\",\n"
+                }
+            ],
+            "date": 1730836777340,
+            "name": "Commit-0",
+            "content": "{\n    \"name\": \"jsonforms-vuetify\",\n    \"version\": \"0.0.0\",\n    \"scripts\": {\n        \"dev\": \"vite\",\n        \"build\": \"vite build\",\n        \"preview\": \"vite preview\",\n        \"lint\": \"eslint . --fix --ignore-path .gitignore\"\n    },\n    \"dependencies\": {\n        \"@mdi/font\": \"7.4.47\",\n        \"core-js\": \"^3.37.1\",\n        \"roboto-fontface\": \"*\",\n        \"vue\": \"^3.4.31\",\n        \"vuetify\": \"^3.6.11\"\n    },\n    \"devDependencies\": {\n\n\n        \"@vitejs/plugin-vue\": \"^5.0.5\",\n        \"eslint\": \"^8.57.0\",\n        \"eslint-config-standard\": \"^17.1.0\",\n        \"eslint-config-vuetify\": \"^1.0.0\",\n        \"eslint-plugin-import\": \"^2.29.1\",\n        \"eslint-plugin-n\": \"^16.6.2\",\n        \"eslint-plugin-node\": \"^11.1.0\",\n        \"eslint-plugin-promise\": \"^6.4.0\",\n        \"eslint-plugin-vue\": \"^9.27.0\",\n        \"pinia\": \"^2.1.7\",\n        \"sass\": \"1.77.6\",\n        \"unplugin-auto-import\": \"^0.17.6\",\n        \"unplugin-fonts\": \"^1.1.1\",\n        \"unplugin-vue-components\": \"^0.27.2\",\n        \"unplugin-vue-router\": \"^0.10.0\",\n        \"vite\": \"^5.3.3\",\n        \"vite-plugin-vue-layouts\": \"^0.11.0\",\n        \"vite-plugin-vuetify\": \"^2.0.3\",\n        \"vue-router\": \"^4.4.0\"\n    }\n}"
+        }
+    ]
+}

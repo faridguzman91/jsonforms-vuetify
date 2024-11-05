@@ -1,0 +1,139 @@
+{
+    "world": "die Welt!",
+    "nav": {
+        "home_title": "Heim",
+        "conversation_list": "Gespräche",
+        "subscriptions": "Abonnement",
+        "users": "Anwender",
+        "accounts": "Konten",
+        "resources": "Resourcen"
+    },
+    "button": {
+        "create_user": "Benutzer erstellen",
+        "apply_filter": "Anwenden",
+        "reset_filter": "Zurücksetzen",
+        "select_queue": "Warteschlange auswählen",
+        "logout": "Ausloggen",
+        "cancel": "Absagen",
+        "save": "Speichern",
+        "back": "Zurück",
+        "select": "Auswählen"
+    },
+    "teams": {
+        "customer_service": "Kundendienst",
+        "contact_sales": "Vertrieb kontaktieren",
+        "account_support": "Unterstützung des Kontos"
+    },
+    "header": {
+        "keyword_search": "Schlüsselwortsuche",
+        "new_button_label": "Neu"
+    },
+    "error": {
+        "title": "Fehler",
+        "generic_error": "Ein Fehler ist aufgetreten",
+        "badRequest": "Fehlerhafte Anfrage: Bitte überprüfen Sie Ihre Eingaben und versuchen Sie es erneut.",
+        "serverError": "Serverfehler: Etwas ist auf unserer Seite schiefgelaufen. Bitte versuchen Sie es später noch einmal.",
+        "network": "Netzwerkfehler: Server nicht erreichbar.",
+        "default": "Ein unerwarteter Fehler ist aufgetreten."
+    },
+    "account": {
+        "fetch_no_results_title": "Keine Konten gefunden",
+        "fetch_no_results_detail": "Es wurden keine Konten gefunden.",
+        "fetch_success_title": "Konten erfolgreich geladen",
+        "fetch_success_detail": "Die Konten wurden erfolgreich geladen."
+    },
+    "resource": {
+        "fetch_no_results_title": "Keine Ergebnisse",
+        "fetch_no_results_detail": "Keine Ressourcen gefunden für {kind}"
+    },
+    "table_header": {
+        "name": "Name",
+        "description": "Beschreibung",
+        "capacity": "Fassungsvermögen",
+        "hostname": "Hostname",
+        "username": "Benutzername",
+        "email": "E-Mail",
+        "role": "Rolle",
+        "created_at": "Erstellt am",
+        "updated_at": "Aktualisiert am",
+        "revision": "Neuausgabe",
+        "actions": "Aktion"
+    },
+    "resource_kind": {
+        "InteractionsIntance": "Interactions-Instanz",
+        "PhoneNumber": "Telefonnummer",
+        "PhoneNumberPool": "Telefonnummer-Pool",
+        "SessionBorderController": "Session Border Controller",
+        "Trunk": "Stamm",
+        "TransformationRules": "Umwandlungregeln",
+        "InboundRoutingRule": "Regel für eingehendes Routing",
+        "OutboundRoutingRule": "Regel für ausgehende Routing"
+    },
+    "common": {
+        "search": "Suche",
+        "advanced_search": "Erweiterte Suche",
+        "campaigns": "Kampagnen",
+        "campaign_name": "Kampagne",
+        "queues": "Warteschlangen",
+        "queue_name": "Warteschlange",
+        "id": "ID",
+        "instance": "Instance",
+        "campaign": "Kampagne",
+        "routePointName": "Warteschlange",
+        "agentName": "Agentenname",
+        "clip": "Anruferidentifikation",
+        "answered": "Datum beantwortet",
+        "dateTransferred": "Datum übertragen",
+        "field": "Feld",
+        "old_value": "Alter Zeitwert",
+        "new_value": "Neuer Zeitwert",
+        "updated_by": "Aktualisiert von",
+        "updated_on": "Aktualisiert am",
+        "event": "Vorfall",
+        "display_name": "Anzeigename",
+        "first_name": "Vorname",
+        "last_name": "Nachname",
+        "status": "Status",
+        "archive": "archivieren",
+        "archived": "archiviert",
+        "email": "E-mail",
+        "roles": "Rollen",
+        "extension_number": "Nebenstellennummer",
+        "subject": "QuandaGo ID",
+        "active": "Aktiv",
+        "inactive": "Inaktiv",
+        "profile": "Profil",
+        "users": "Benutzer",
+        "both": "beide",
+        "no": "Nein",
+        "yes": "Ja",
+        "and": "und",
+        "phone_number": "Telefonnummer",
+        "interaction_id": "Id",
+        "agent_name": "Agentenname",
+        "duration": "Dauer",
+        "interaction_type": "Richtung",
+        "answered_at": "Beantwortet um",
+        "metadata": "Metadaten",
+        "conversation": "Gespräch",
+        "from": "Aus",
+        "to": "Zu"
+    },
+    "message": {
+        "final": "Keine Gespräche mehr",
+        "loading": "Wird geladen",
+        "select_conversation_to_play": "Wählen Sie eine Konversation zum Abspielen aus",
+        "play": "Abspielen",
+        "metadataInfo": "Metadaten",
+        "loading_file": "Datei wird geladen",
+        "loading_file_error": "Beim Laden der Datei ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.",
+        "connecting_to_stream": "Verbindung zum Stream herstellen",
+        "stream_disconnected": "Stream-Verbindung unterbrochen. Dies kann passieren, wenn der Stream längere Zeit inaktiv ist oder die Internetverbindung unterbrochen wird",
+        "stream_connection_error": "Beim Verbinden mit dem Stream ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut."
+    },
+    "locale": {
+        "dutch": "Niederländisch",
+        "english": "Englisch",
+        "german": "Deutsch"
+    }
+}

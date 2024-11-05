@@ -1,0 +1,147 @@
+{
+    "world": "de wereld!",
+    "nav": {
+        "home_title": "Thuis",
+        "conversation_list": "Gesprekken",
+        "subscriptions": "Abonnement",
+        "users": "Gebruikers",
+        "accounts": "Rekening",
+        "resources": "Resources"
+    },
+    "button": {
+        "create_user": "nieuwe gebruiker",
+        "apply_filter": "filteren",
+        "reset_filter": "reset",
+        "select_queue": "Kies wachtrij",
+        "logout": "Uitloggen",
+        "cancel": "Annuleren",
+        "save": "Opslaan",
+        "back": "Terug",
+        "select": "Selecteer"
+    },
+    "table_header": {
+        "name": "Naam",
+        "description": "Beschrijving",
+        "capacity": "Capaciteit",
+        "hostname": "Hostnaam",
+        "created_at": "Aangemaakt op",
+        "updated_at": "Bijgewerkt op",
+        "username": "Gebruikersnaam",
+        "email": "E-mail",
+        "role": "Rol",
+        "revision": "Revisie",
+        "actions": "Actie"
+    },
+    "header": {
+        "keyword_search": "Sleutelwoord Zoeken",
+        "new_button_label": "Nieuw"
+    },
+    "resource_kind": {
+        "InteractionsInstance": "Interactie-instantie",
+        "PhoneNumber": "Telefoonnummer",
+        "PhoneNumberPool": "Telefoonnummerpool",
+        "SessionBorderController": "Session Border Controller",
+        "Trunk": "Trunk",
+        "TransformationRules": "Regels voor transformatie",
+        "InboundRoutingRule": "Regel voor inkomende routering",
+        "OutboundRoutingRule": "Regel voor uitgaande routering"
+    },
+    "error": {
+        "title": "Fout",
+        "generic_error": "Er is een fout opgetreden",
+        "badRequest": "Ongeldige aanvraag: Controleer uw invoer en probeer het opnieuw.",
+        "serverError": "Serverfout: Er is iets misgegaan aan onze kant. Probeer het later opnieuw.",
+        "network": "Netwerkfout: Kan de server niet bereiken.",
+        "default": "Er is een onverwachte fout opgetreden.",
+        "failed_to_load_accounts": "Kon de accounts niet laden"
+    },
+    "resource": {
+        "fetch_no_results_title": "Geen resultaten",
+        "fetch_no_results_detail": "Geen resources gevonden voor {kind}."
+    },
+    "account": {
+        "fetch_no_results_title": "Geen accounts gevonden",
+        "fetch_no_results_detail": "Er zijn geen accounts gevonden.",
+        "fetch_success_title": "Accounts succesvol geladen",
+        "fetch_success_detail": "De accounts zijn succesvol geladen."
+    },
+    "placeholders": {
+        "search_by_name": "Zoek op naam",
+        "search_by_username": "Zoek op gebruikersnaam",
+        "search_by_email": "Zoek op e-mail",
+        "search_by_role": "Zoek op rol"
+    },
+    "assistance": "Hulp",
+    "teams": {
+        "customer_service": "Klantenservice",
+        "contact_sales": "Contact Verkoop",
+        "account_support": "Account Ondersteuning"
+    },
+    "common": {
+        "search": "Zoeken",
+        "advanced_search": "Geavanceerd Zoeken",
+        "campaigns": "Campagnes",
+        "campaign_name": "Campagne",
+        "queues": "Wachtrijen",
+        "queue_name": "Wachtrij",
+        "id": "ID",
+        "instance": "Instance",
+        "campaign": "Campagne",
+        "routePointName": "Wachtrij",
+        "agentName": "Naam agent",
+        "clip": "Nummerherkenning",
+        "answered": "Beantwoord op",
+        "dateTransferred": "Doorgezet op",
+        "field": "Veld",
+        "old_value": "Oude Waarde",
+        "new_value": "Nieuwe Waarde",
+        "updated_by": "Geüpdate Door",
+        "updated_on": "Geüpdate Op",
+        "event": "Gebeurtenis",
+        "display_name": "weergavenaam",
+        "first_name": "voornaam",
+        "last_name": "achternaam",
+        "status": "Status",
+        "archive": "Archiveren",
+        "archived": "Gearchiveerd",
+        "email": "E-mail",
+        "roles": "Rollen",
+        "extension_number": "Toestelnummer",
+        "subject": "QuandaGo ID",
+        "active": "Actief",
+        "inactive": "Inactief",
+        "profile": "Profiel",
+        "users": "Gebruikers",
+        "both": "Beiden",
+        "no": "Nee",
+        "yes": "Ja",
+        "and": "en",
+        "phone_number": "Telefoonnummer",
+        "interaction_id": "GUID",
+        "agent_name": "Agent Naam",
+        "duration": "Duur",
+        "interaction_type": "Type",
+        "answered_at": "Opgenomen om",
+        "metadata": "Metadata",
+        "conversation": "Gesprek",
+        "from": "Vanaf",
+        "to": "Tot"
+    },
+    "message": {
+        "final": "Niet meer gesprekken gevonden",
+        "loading": "Aan het laden",
+        "select_conversation_to_play": "Selecteer een gesprek om af te spelen",
+        "play": "Afspelen",
+        "metadataInfo": "Metadata",
+        "loading_file": "Bestand aan het laden",
+        "loading_file_error": "Er is iets mis gegaan bij het laden van het bestand, probeer het aub later nog een keer.",
+        "connecting_to_stream": "Met stream aan het verbinden",
+        "stream_disconnected": "Stream verbinding verbroken. Dit kan gebeuren wanneer de stream langere tijd inactief is of als de internet verbinding verbroken is.",
+        "stream_connection_error": "Er is iets mis gegaan bij het verbinden met de stream, probeer het aub later nog een keer."
+    },
+    "locale": {
+        "dutch": "Nederlands",
+        "english": "Engels",
+        "german": "Duits"
+    }
+}
